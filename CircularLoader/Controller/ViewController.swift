@@ -17,12 +17,25 @@ class ViewController: UIViewController {
     
     let percentegeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Start"
+        label.text = "0%"
         label.textColor = .white
         label.textAlignment = .center
+        label.frame = CGRect(x: 0, y: 0, width: 100.0, height: 50.0)
         label.font = UIFont.boldSystemFont(ofSize: 32)
         return label
     }()
+    
+    let downloadStatusLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Start"
+        label.textColor = .white
+        label.textAlignment = .center
+        label.frame = CGRect(x: 0, y: 0, width: 100.0, height: 50.0)
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+        return label
+    }()
+    
+    var stateStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,13 +62,21 @@ class ViewController: UIViewController {
         drawPursatingLayer(from: circularPath)
         drawTrackLayer(from: circularPath)
         drawShapeLayer(from: circularPath)
-        drawPercentegeLabel()
+        drawDownloadStatusStack()
     }
     
-    private func drawPercentegeLabel() {
-        view.addSubview(percentegeLabel)
-        percentegeLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        percentegeLabel.center = view.center
+    private func drawDownloadStatusStack() {
+        stateStackView = UIStackView(arrangedSubviews: [percentegeLabel, downloadStatusLabel])
+        stateStackView.axis = .vertical
+        stateStackView.distribution = .equalSpacing
+        stateStackView.alignment = .center
+        stateStackView.spacing = 5.0
+        
+        stateStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stateStackView)
+        stateStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        stateStackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        
     }
     
     private func drawPursatingLayer(from bezierPath: UIBezierPath) {
@@ -107,13 +128,16 @@ class ViewController: UIViewController {
     
     @objc private func handleTap() {
         guard let taskState = downloadTask?.state else {
+            downloadStatusLabel.text = DownloadStates.InProgress.description
             beginDowloadingFile()
             return
         }
         switch taskState {
         case .running:
+            downloadStatusLabel.text = DownloadStates.Pause.description
             downloadTask?.suspend()
         case .suspended:
+            downloadStatusLabel.text = DownloadStates.InProgress.description
             downloadTask?.resume()
         case .canceling:
             break
@@ -142,7 +166,9 @@ class ViewController: UIViewController {
 
 extension ViewController: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        print("Finished Downloading File")
+        DispatchQueue.main.async {
+            self.downloadStatusLabel.text = DownloadStates.Completed.description
+        }
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
