@@ -13,6 +13,7 @@
 		F4D1724523BFD562001D09ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4D1724323BFD562001D09ED /* Main.storyboard */; };
 		F4D1724723BFD564001D09ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4D1724623BFD564001D09ED /* Assets.xcassets */; };
 		F4D1724A23BFD564001D09ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4D1724823BFD564001D09ED /* LaunchScreen.storyboard */; };
+		F4D1725423C10186001D09ED /* UIColor_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1725323C10186001D09ED /* UIColor_Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		F4D1724623BFD564001D09ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4D1724923BFD564001D09ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4D1724B23BFD564001D09ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4D1725323C10186001D09ED /* UIColor_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		F4D1723C23BFD562001D09ED /* CircularLoader */ = {
 			isa = PBXGroup;
 			children = (
+				F4D1725123C1016C001D09ED /* Common */,
 				F4D1723D23BFD562001D09ED /* AppDelegate.swift */,
 				F4D1723F23BFD562001D09ED /* SceneDelegate.swift */,
 				F4D1724123BFD562001D09ED /* ViewController.swift */,
@@ -65,6 +68,22 @@
 				F4D1724B23BFD564001D09ED /* Info.plist */,
 			);
 			path = CircularLoader;
+			sourceTree = "<group>";
+		};
+		F4D1725123C1016C001D09ED /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F4D1725223C10174001D09ED /* Extensions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		F4D1725223C10174001D09ED /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F4D1725323C10186001D09ED /* UIColor_Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +160,7 @@
 				F4D1724223BFD562001D09ED /* ViewController.swift in Sources */,
 				F4D1723E23BFD562001D09ED /* AppDelegate.swift in Sources */,
 				F4D1724023BFD562001D09ED /* SceneDelegate.swift in Sources */,
+				F4D1725423C10186001D09ED /* UIColor_Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +236,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +290,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -294,7 +314,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jcollado.CircularLoader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -312,7 +332,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jcollado.CircularLoader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
